@@ -396,6 +396,13 @@
             font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
         }
         /* 반응형 */
+	 @media (max-width: 900px) {
+	    .contact-content {
+	        grid-template-columns: 1fr;
+	        gap: 2.1rem;
+	    }
+	    #daumRoughmapContainer1753766655670 { height:200px!important; }
+	}
         @media (max-width: 900px) {
             .container { max-width: 98vw; }
             .about-content, .contact-content {
@@ -530,13 +537,14 @@
     </div>
 
     <!-- 연락처 섹션 -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title" style="color: var(--accent);">연락처</h2>
-            <div class="contact-content">
+    <!-- 연락처 섹션 -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title" style="color: var(--accent);">연락처</h2>
+        <div class="contact-content">
+            <div>
                 <div class="contact-info">
                     <h3>위치</h3>
-			<div id="daumRoughmapContainer1753766655670" class="root_daum_roughmap root_daum_roughmap_landing"></div>
                     <p>전남 무안군 일로읍 공원길 84 1층</p>
                     <h3 style="margin-top: 2rem;">연락처</h3>
                     <p>전화: 061-285-0211</p>
@@ -544,26 +552,47 @@
                     <h3 style="margin-top: 2rem;">운영시간</h3>
                     <p>평일: 오전 11시 - 오후 08시</p>
                 </div>
-              <!--
-	* 카카오맵 - 약도서비스
-	* 한 페이지 내에 약도를 2개 이상 넣을 경우에는
-	* 약도의 수 만큼 소스를 새로 생성, 삽입해야 합니다.
--->
-<!-- 1. 약도 노드 -->
+                <!-- 지도 영역 -->
+                <div style="margin-top:2rem; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(60,40,10,0.08); border:1.5px solid #ebdcc2;">
+                    <div id="daumRoughmapContainer1753766655670" style="width:100%; height:240px;"></div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 style="margin-bottom: 1.5rem;">문의하기</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">문의내용</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">문의하기</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 
-
-<!-- 2. 설치 스크립트 -->
+<!-- 카카오맵 스크립트: 반드시 body 끝에 -->
 <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-
-<!-- 3. 실행 스크립트 -->
-<script charset="UTF-8">
-	new daum.roughmap.Lander({
-		"timestamp" : "1753766655670",
-		"key" : "63m3aimicte",
-		"mapWidth" : "360",
-		"mapHeight" : "240"
-	}).render();
+<script>
+    // 약도 렌더링
+    window.addEventListener("DOMContentLoaded", function() {
+        new daum.roughmap.Lander({
+            "timestamp" : "1753766655670",
+            "key" : "63m3aimicte",
+            "mapWidth" : "100%",
+            "mapHeight" : "240"
+        }).render();
+    });
 </script>
+
                 <div class="contact-form">
                     <h3 style="margin-bottom: 1.5rem;">문의하기</h3>
                     <form>
