@@ -221,23 +221,45 @@
             gap: 2rem;
         }
         .menu-item {
-            background: rgba(255,255,255,0.93);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .menu-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(45deg, #955b35, #7b5033);
-            z-index: 1;
-        }
+    position: relative;
+    overflow: visible;
+}
+
+.menu-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* 오버레이용 확대 이미지 */
+.menu-image-preview {
+    display: none;
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(1.1);
+    width: 420px; /* 원하는 크기로 조정 */
+    max-width: 80vw;
+    max-height: 80vh;
+    box-shadow: 0 12px 32px rgba(30,22,14,0.26);
+    border-radius: 18px;
+    z-index: 10;
+    background: #fff;
+    object-fit: contain;
+}
+
+.menu-item:hover .menu-image-preview {
+    display: block;
+    animation: fadein 0.2s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
        .menu-item:hover {
 	    transform: scale(1.15);
 	    z-index: 10;
