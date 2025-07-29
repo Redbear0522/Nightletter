@@ -4,322 +4,345 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>밤편지 - Night Letter</title>
-    <!-- 구글 폰트: Noto Serif KR, Nanum Myeongjo, Pretendard -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- 일본/한글 고전 느낌 명조 계열 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
     <style>
+        :root {
+            --bg-main: #f8f5ef;
+            --bg-card: #f4ece3e6;
+            --border-main: #c5b093;
+            --accent: #836c53;
+            --brown: #6d5137;
+            --deep-brown: #423023;
+            --shadow: 0 6px 40px rgba(60,40,10,0.07);
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            font-family: 'Noto Serif KR', 'Nanum Myeongjo', Pretendard, serif;
-            line-height: 1.7;
-            color: #333;
-            min-height: 100vh;
+            font-family: 'Nanum Myeongjo', 'Noto Serif KR', Pretendard, serif;
             background: url('https://res.cloudinary.com/dp0l4rxhu/image/upload/back01_tqu11m.jpg') no-repeat center center fixed;
             background-size: cover;
+            color: var(--deep-brown);
+            min-height: 100vh;
             position: relative;
         }
         body::before {
             content: '';
             position: fixed;
             left: 0; top: 0; right: 0; bottom: 0;
-            background: rgba(34, 30, 20, 0.60);
+            background: rgba(210,200,180,0.60);
             z-index: 0;
             pointer-events: none;
         }
-        /* 헤더 */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(8px);
+            background: rgba(250,245,236,0.93);
+            border-bottom: 1.5px solid var(--border-main);
+            box-shadow: 0 2px 18px rgba(100,80,60,0.07);
             z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
+            padding: 1.2rem 0 0.9rem 0;
         }
-
         nav {
-            max-width: 1200px;
+            max-width: 1020px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
+            align-items: flex-end;
+            padding: 0 1.5rem;
         }
-
         .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #7b5033;
-            letter-spacing: 2px;
-            font-family: 'Noto Serif KR', 'Nanum Myeongjo', Pretendard, serif;
+            font-size: 2.2rem;
+            letter-spacing: 0.18em;
+            font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
+            color: var(--accent);
             text-decoration: none;
+            font-weight: 700;
         }
-
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.3rem;
         }
-
         .nav-links a {
             text-decoration: none;
-            color: #222;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-            position: relative;
-            letter-spacing: 0.5px;
+            color: var(--brown);
+            font-size: 1.13rem;
+            font-family: 'Noto Serif KR', Pretendard, serif;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: border 0.2s;
         }
-
         .nav-links a:hover {
-            color: #7b5033;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #7b5033;
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        /* Hero */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .hero-content {
-            z-index: 2;
-            position: relative;
-            background: rgba(30, 22, 14, 0.15);
-            padding: 2rem 3rem 2rem 3rem;
-            border-radius: 25px;
-            box-shadow: 0 10px 40px 0 rgba(30,22,14,0.15);
-            backdrop-filter: blur(1px);
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.16);
-            animation: slideInUp 1s ease-out;
-            font-family: 'Noto Serif KR', 'Nanum Myeongjo', Pretendard, serif;
-        }
-        .hero p {
-            font-size: 1.6rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: slideInUp 1s ease-out 0.3s both;
-            font-family: 'Nanum Myeongjo', 'Noto Serif KR', Pretendard, serif;
-        }
-        .cta-button {
-            display: inline-block;
-            background: #955b35;
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(149,91,53,0.15);
-            animation: slideInUp 1s ease-out 0.6s both;
-            letter-spacing: 2px;
-        }
-        .cta-button:hover {
-            background: #6c3e25;
-        }
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(50px);}
-            to { opacity: 1; transform: translateY(0);}
+            border-bottom: 2px solid var(--accent);
         }
         section {
-            padding: 80px 0;
+            padding: 90px 0 70px 0;
             position: relative;
             z-index: 1;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
         }
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #7b5033;
+            font-size: 2.25rem;
+            letter-spacing: 0.13em;
+            color: var(--accent);
+            margin-bottom: 2.7rem;
+            font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+            border-bottom: 1px dashed #b9a48a77;
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 1rem;
+        }
+        /* Hero */
+        .hero {
+            min-height: 66vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--brown);
+            background: none;
+        }
+        .hero-content {
+            z-index: 2;
             position: relative;
-            font-family: 'Noto Serif KR', 'Nanum Myeongjo', Pretendard, serif;
-            letter-spacing: 1px;
+            background: rgba(252,250,247,0.64);
+            padding: 2.5rem 2.5rem 2rem 2.5rem;
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            border: 1.5px solid var(--border-main);
         }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: #955b35;
-            border-radius: 2px;
+        .hero h1 {
+            font-size: 2.7rem;
+            font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
+            letter-spacing: 0.17em;
+            margin-bottom: 1.2rem;
         }
-        /* 소개 */
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--deep-brown);
+            opacity: 0.86;
+            font-family: 'Nanum Myeongjo', serif;
+            margin-bottom: 1.8rem;
+        }
+        .cta-button {
+            background: var(--accent);
+            color: #fff8ed;
+            padding: 10px 32px;
+            border: none;
+            border-radius: 999px;
+            font-size: 1.08rem;
+            letter-spacing: 0.12em;
+            font-family: 'Noto Serif KR', Pretendard, serif;
+            cursor: pointer;
+            transition: background 0.23s;
+            box-shadow: 0 2px 18px rgba(100,80,60,0.10);
+            text-decoration: none;
+        }
+        .cta-button:hover { background: var(--brown);}
+        /* About */
         .about {
-            background: rgba(255,255,255,0.92);
+            background: var(--bg-card);
             border-radius: 12px;
-            box-shadow: 0 10px 35px rgba(139, 69, 19, 0.06);
+            border: 1.5px solid #ebdcc2;
+            margin-top: 30px;
+            box-shadow: 0 4px 24px rgba(70,40,10,0.06);
         }
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            gap: 3.3rem;
+            align-items: flex-start;
         }
         .about-text {
-            font-size: 1.13rem;
-            line-height: 1.85;
-            font-family: 'Nanum Myeongjo', 'Noto Serif KR', Pretendard, serif;
+            font-size: 1.12rem;
+            line-height: 2.05;
+            font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
         }
         .about-text h3 {
-            color: #7b5033;
+            color: var(--accent);
             margin-bottom: 1rem;
-            font-size: 1.4rem;
+            font-size: 1.28rem;
+            font-weight: 600;
         }
         .about-image {
-            background: linear-gradient(135deg, #8B4513, #A1887F);
-            border-radius: 18px;
-            height: 370px;
+            background: linear-gradient(130deg, #f4e8d2 60%, #e5cab1 100%);
+            border-radius: 13px;
+            border: 1.5px solid #e0c8a8;
+            min-height: 270px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.15rem;
-            font-family: 'Pretendard', serif;
-            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.13);
+            color: var(--brown);
+            font-size: 1.08rem;
+            font-family: 'Noto Serif KR', serif;
+            box-shadow: 0 6px 18px rgba(190,160,100,0.08);
+            text-align: center;
         }
         /* 메뉴 */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2.3rem;
         }
         .menu-item {
-    position: relative;
-    overflow: visible;
-}
-
-.menu-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    z-index: 1;
-}
-
-/* 오버레이용 확대 이미지 */
-.menu-image-preview {
-    display: none;
-    position: absolute;
-    left: 50%; top: 50%;
-    transform: translate(-50%, -50%) scale(1.1);
-    width: 420px; /* 원하는 크기로 조정 */
-    max-width: 80vw;
-    max-height: 80vh;
-    box-shadow: 0 12px 32px rgba(30,22,14,0.26);
-    border-radius: 18px;
-    z-index: 10;
-    background: #fff;
-    object-fit: contain;
-}
-
-.menu-item:hover .menu-image-preview {
-    display: block;
-    animation: fadein 0.2s;
-}
-
-@keyframes fadein {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-       .menu-item:hover {
-	    transform: scale(1.15);
-	    z-index: 10;
-	}
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1.5px solid #e3cfb3;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: visible;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .menu-item:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 38px rgba(50,40,10,0.15);
+            z-index: 2;
+        }
         .menu-image {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        .menu-item:hover .menu-image {
-            transform: scale(1.25);
+            border-radius: 13px 13px 0 0;
+            border-bottom: 1px solid #dbc9ab63;
+            background: #fff8ed;
         }
         .menu-content {
-            padding: 1.5rem;
+            padding: 1.2rem 1rem 1.1rem 1rem;
         }
         .menu-content h3 {
-            color: #7b5033;
-            margin-bottom: 0.5rem;
-            font-size: 1.35rem;
-            font-family: 'Noto Serif KR', 'Nanum Myeongjo', Pretendard, serif;
+            color: var(--brown);
+            margin-bottom: 0.28rem;
+            font-size: 1.15rem;
+            font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
             font-weight: 600;
+            letter-spacing: 0.02em;
         }
         .menu-content .price {
-            color: #955b35;
+            color: var(--accent);
             font-weight: bold;
-            font-size: 1.13rem;
+            font-size: 1.08rem;
             float: right;
             font-family: 'Pretendard', serif;
         }
         .menu-content p {
-            color: #444;
+            color: #665544;
             margin-top: 0.5rem;
             font-family: 'Pretendard', serif;
             clear: both;
+            font-size: 0.98rem;
+        }
+        /* 메뉴 오버레이(확대) */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            left: 0; top: 0; right: 0; bottom: 0;
+            background: rgba(44,33,22,0.28);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s;
+        }
+        .menu-overlay.active { display: flex; }
+        .menu-overlay-content {
+            background: #fdf8f1;
+            border: 4px double var(--border-main);
+            box-shadow: 0 16px 64px rgba(44,30,12,0.19);
+            border-radius: 23px;
+            padding: 28px 38px 20px 38px;
+            max-width: 480px;
+            width: 92vw;
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            animation: fadein 0.3s;
+        }
+        .menu-overlay-img {
+            width: 100%;
+            max-width: 390px;
+            max-height: 50vh;
+            object-fit: contain;
+            border-radius: 15px;
+            border: 1.8px solid #ebdcc2;
+            box-shadow: 0 3px 24px rgba(160,140,100,0.13);
+            background: #fffefb;
+        }
+        .menu-overlay-title {
+            font-size: 1.18rem;
+            margin: 1.1rem 0 0.2rem 0;
+            color: var(--brown);
+            font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+        }
+        .menu-overlay-price {
+            font-size: 1.05rem;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+        .menu-overlay-desc {
+            font-size: 0.99rem;
+            color: #736b60;
+            text-align: center;
+            margin-bottom: 0.7rem;
+            font-family: Pretendard, serif;
+        }
+        .close-overlay {
+            position: absolute;
+            top: 13px; right: 18px;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: #b8a791;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+        .close-overlay:hover { color: var(--accent);}
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         /* 연락처 */
         .contact {
-            background: linear-gradient(135deg, #8B4513, #6D4C41);
-            color: white;
+            background: linear-gradient(120deg, #f5e5ce 60%, #e4ccb6 100%);
+            color: var(--deep-brown);
             border-radius: 12px;
+            border: 1.5px solid #ebdcc2;
         }
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3.5rem;
         }
         .contact-info h3 {
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
+            margin-bottom: 0.7rem;
+            font-size: 1.12rem;
             font-family: 'Noto Serif KR', Pretendard, serif;
+            color: var(--accent);
         }
         .contact-info p {
             margin-bottom: 0.5rem;
-            opacity: 0.94;
+            opacity: 0.95;
+            font-size: 1.01rem;
         }
         .contact-form {
-            background: rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.15);
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 14px;
+            border: 1.5px solid #e0c8a8;
             backdrop-filter: blur(6px);
         }
         .form-group {
@@ -334,57 +357,60 @@
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px;
+            padding: 11px;
             border: none;
-            border-radius: 8px;
+            border-radius: 7px;
             background: rgba(255,255,255,0.9);
             font-size: 1rem;
             font-family: Pretendard, serif;
+            border: 1px solid #ebdcc2;
         }
         .form-group textarea {
             height: 120px;
             resize: vertical;
         }
         .submit-btn {
-            background: #955b35;
+            background: var(--accent);
             color: white;
-            padding: 12px 30px;
+            padding: 11px 30px;
             border: none;
             border-radius: 25px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
             font-family: Pretendard, serif;
+            letter-spacing: 0.03em;
         }
         .submit-btn:hover {
-            background: #6c3e25;
-            transform: translateY(-2px);
+            background: var(--brown);
+            transform: translateY(-1px);
         }
-        /* 푸터 */
         footer {
-            background: #222;
-            color: white;
+            background: #e4dccb;
+            color: #6b4b2b;
             text-align: center;
-            padding: 2rem 0;
+            padding: 1.7rem 0 1.4rem 0;
+            border-top: 1.5px solid #ebdcc2;
+            margin-top: 40px;
+            font-size: 1rem;
+            font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
         }
         /* 반응형 */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem;}
-            .about-content,
-            .contact-content {
+        @media (max-width: 900px) {
+            .container { max-width: 98vw; }
+            .about-content, .contact-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .section-title {
-                font-size: 1.5rem;
+                gap: 2.1rem;
             }
             .menu-grid {
                 grid-template-columns: 1fr;
             }
+        }
+        @media (max-width: 600px) {
+            .logo { font-size: 1.3rem; }
+            .section-title { font-size: 1.25rem; padding-bottom: 0.5rem;}
+            .hero-content { padding: 1.3rem; }
+            .about-image { font-size: 0.98rem; }
         }
     </style>
 </head>
@@ -427,11 +453,9 @@
                     </p>
                 </div>
                 <div class="about-image">
-                    <p>
-                        아늑한 카페 분위기<br>
-                        신선한 원두<br>
-                        정성스러운 서비스
-                    </p>
+                    아늑한 다실 같은 공간<br>
+                    신선한 재료와 정갈함<br>
+                    소박한 휴식과 온기
                 </div>
             </div>
         </div>
@@ -442,54 +466,48 @@
         <div class="container">
             <h2 class="section-title">메뉴</h2>
             <div class="menu-grid">
-                <div class="menu-item">
-		    <img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu01_qcqxc4.jpg" alt="화로당고치즈구이" class="menu-image">
-		    <img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu01_qcqxc4.jpg" alt="화로당고치즈구이" class="menu-image-preview">
-		    <div class="menu-content">
-		        <h3>화로당고치즈구이</h3>
-		        <span class="price">18,000원</span>
-		        <p>밤편지 대표 메뉴</p>
-		    </div>
-		</div>
-                <div class="menu-item">
+                <div class="menu-item" data-title="화로당고치즈구이" data-img="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu01_qcqxc4.jpg" data-price="18,000원" data-desc="밤편지 대표 메뉴">
+                    <img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu01_qcqxc4.jpg" alt="화로당고치즈구이" class="menu-image">
+                    <div class="menu-content">
+                        <h3>화로당고치즈구이</h3>
+                        <span class="price">18,000원</span>
+                        <p>밤편지 대표 메뉴</p>
+                    </div>
+                </div>
+                <div class="menu-item" data-title="모찌팥빙수" data-img="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu02_asmdev.jpg" data-price="17,000원" data-desc="여름한정 메뉴">
                     <img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu02_asmdev.jpg" alt="모찌팥빙수" class="menu-image">
-			<img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu02_asmdev.jpg" alt="모찌팥빙수" class="menu-image-preview">
                     <div class="menu-content">
                         <h3>모찌팥빙수</h3>
                         <span class="price">17,000원</span>
                         <p>여름한정 메뉴</p>
                     </div>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" data-title="티슈브레드" data-img="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu03_ynonsp.jpg" data-price="7,000원" data-desc="부드럽고 달콤한 티슈브레드">
                     <img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu03_ynonsp.jpg" alt="티슈브레드" class="menu-image">
-			<img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu03_ynonsp.jpg" alt="티슈브레드" class="menu-image-preview">
                     <div class="menu-content">
                         <h3>티슈브레드</h3>
                         <span class="price">7,000원</span>
                         <p>부드럽고 달콤한 티슈브레드</p>
                     </div>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" data-title="인생 밀크티" data-img="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu04_k61dbm.jpg" data-price="6,800원" data-desc="진짜 인생 밀크티를 맛보세요">
                     <img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu04_k61dbm.jpg" alt="인생 밀크티" class="menu-image">
-			<img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu04_k61dbm.jpg" alt="인생 밀크티" class="menu-image-preview">
                     <div class="menu-content">
                         <h3>인생 밀크티</h3>
                         <span class="price">6,800원</span>
                         <p>진짜 인생 밀크티를 맛보세요</p>
                     </div>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" data-title="일편딸심(수제딸기우유)" data-img="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu05_ewga0u.jpg" data-price="6,800원" data-desc="4계절 내내 즐길수 있는 수제 딸기우유">
                     <img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu05_ewga0u.jpg" alt="일편딸심" class="menu-image">
-			<img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu05_ewga0u.jpg" alt="일편딸심" class="menu-image-preview">
                     <div class="menu-content">
                         <h3>일편딸심(수제딸기우유)</h3>
                         <span class="price">6,800원</span>
                         <p>4계절 내내 즐길수 있는 수제 딸기우유</p>
                     </div>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" data-title="딸기모찌" data-img="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu06_qdrzom.jpg" data-price="4,000원" data-desc="딸기가 통으로 들어가 있는 시그니처 메뉴">
                     <img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu06_qdrzom.jpg" alt="딸기모찌" class="menu-image">
-			<img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu06_qdrzom.jpg" alt="딸기모찌" class="menu-image-preview">
                     <div class="menu-content">
                         <h3>딸기모찌</h3>
                         <span class="price">4,000원</span>
@@ -500,10 +518,21 @@
         </div>
     </section>
 
+    <!-- 메뉴 오버레이(확대) -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-overlay-content">
+            <button class="close-overlay" id="closeOverlayBtn" title="닫기">&times;</button>
+            <img src="" alt="메뉴 전체사진" class="menu-overlay-img" id="overlayImg">
+            <div class="menu-overlay-title" id="overlayTitle"></div>
+            <div class="menu-overlay-price" id="overlayPrice"></div>
+            <div class="menu-overlay-desc" id="overlayDesc"></div>
+        </div>
+    </div>
+
     <!-- 연락처 섹션 -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title" style="color: white;">연락처</h2>
+            <h2 class="section-title" style="color: var(--accent);">연락처</h2>
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>위치</h3>
@@ -514,6 +543,26 @@
                     <h3 style="margin-top: 2rem;">운영시간</h3>
                     <p>평일: 오전 11시 - 오후 08시</p>
                 </div>
+              <!--
+	* 카카오맵 - 약도서비스
+	* 한 페이지 내에 약도를 2개 이상 넣을 경우에는
+	* 약도의 수 만큼 소스를 새로 생성, 삽입해야 합니다.
+-->
+<!-- 1. 약도 노드 -->
+<div id="daumRoughmapContainer1753766655670" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+
+<!-- 2. 설치 스크립트 -->
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+<!-- 3. 실행 스크립트 -->
+<script charset="UTF-8">
+	new daum.roughmap.Lander({
+		"timestamp" : "1753766655670",
+		"key" : "63m3aimicte",
+		"mapWidth" : "360",
+		"mapHeight" : "240"
+	}).render();
+</script>
                 <div class="contact-form">
                     <h3 style="margin-bottom: 1.5rem;">문의하기</h3>
                     <form>
@@ -556,23 +605,26 @@
                 }
             });
         });
+
         // 헤더 스크롤 효과
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                header.style.background = 'rgba(250,245,236,0.97)';
+                header.style.boxShadow = '0 2px 20px rgba(100,80,60,0.09)';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.92)';
+                header.style.background = 'rgba(250,245,236,0.93)';
                 header.style.boxShadow = 'none';
             }
         });
+
         // 폼 제출 처리
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('문의해 주셔서 감사합니다! 빠른 시일 내에 답변드리겠습니다.');
             this.reset();
         });
+
         // 메뉴 아이템 애니메이션
         const observerOptions = {
             threshold: 0.1,
@@ -589,8 +641,50 @@
         document.querySelectorAll('.menu-item').forEach((item, index) => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(50px)';
-            item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            item.style.transition = `all 0.7s cubic-bezier(.5,0,.13,1) ${index * 0.09}s`;
             observer.observe(item);
+        });
+
+        // 메뉴 사진 오버레이(확대)
+        const overlay = document.getElementById('menuOverlay');
+        const overlayImg = document.getElementById('overlayImg');
+        const overlayTitle = document.getElementById('overlayTitle');
+        const overlayPrice = document.getElementById('overlayPrice');
+        const overlayDesc = document.getElementById('overlayDesc');
+        const closeOverlayBtn = document.getElementById('closeOverlayBtn');
+
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                overlayImg.src = item.dataset.img;
+                overlayTitle.textContent = item.dataset.title;
+                overlayPrice.textContent = item.dataset.price;
+                overlayDesc.textContent = item.dataset.desc;
+                overlay.classList.add('active');
+            });
+            item.addEventListener('mouseleave', function() {
+                overlay.classList.remove('active');
+            });
+        });
+        // 모바일에서는 터치 클릭으로(터치 지원)
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('touchstart', function(e) {
+                overlayImg.src = item.dataset.img;
+                overlayTitle.textContent = item.dataset.title;
+                overlayPrice.textContent = item.dataset.price;
+                overlayDesc.textContent = item.dataset.desc;
+                overlay.classList.add('active');
+                e.stopPropagation();
+            });
+        });
+        // 오버레이 닫기 버튼
+        closeOverlayBtn.addEventListener('click', function() {
+            overlay.classList.remove('active');
+        });
+        // 오버레이 영역 바깥 클릭 시 닫기
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
         });
     </script>
 </body>
