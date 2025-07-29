@@ -669,4 +669,40 @@
         
         document.querySelectorAll('.menu-item').forEach((item, index) => {
             item.style.opacity = '0';
-            item.style.transform = '
+            item.style.transform = 'translateY(50px)';
+            item.style.transition = `all 0.7s cubic-bezier(.5,0,.13,1) ${index * 0.09}s`;
+            observer.observe(item);
+        });
+
+        // 메뉴 사진 오버레이(확대)
+        const overlay = document.getElementById('menuOverlay');
+        const overlayImg = document.getElementById('overlayImg');
+        const overlayTitle = document.getElementById('overlayTitle');
+        const overlayPrice = document.getElementById('overlayPrice');
+        const overlayDesc = document.getElementById('overlayDesc');
+        const closeOverlayBtn = document.getElementById('closeOverlayBtn');
+
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                overlayImg.src = item.dataset.img;
+                overlayTitle.textContent = item.dataset.title;
+                overlayPrice.textContent = item.dataset.price;
+                overlayDesc.textContent = item.dataset.desc;
+                overlay.classList.add('active');
+            });
+        });
+
+        // 오버레이 닫기 버튼
+        closeOverlayBtn.addEventListener('click', function() {
+            overlay.classList.remove('active');
+        });
+
+        // 오버레이 영역 바깥 클릭 시 닫기
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
