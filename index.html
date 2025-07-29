@@ -395,14 +395,22 @@
             font-size: 1rem;
             font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
         }
+        /* 지도 스타일 */
+        .map-container {
+            margin-top: 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(60,40,10,0.08);
+            border: 1.5px solid #ebdcc2;
+            height: 240px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-family: Pretendard, serif;
+        }
         /* 반응형 */
-	 @media (max-width: 900px) {
-	    .contact-content {
-	        grid-template-columns: 1fr;
-	        gap: 2.1rem;
-	    }
-	    #daumRoughmapContainer1753766655670 { height:200px!important; }
-	}
         @media (max-width: 900px) {
             .container { max-width: 98vw; }
             .about-content, .contact-content {
@@ -412,12 +420,37 @@
             .menu-grid {
                 grid-template-columns: 1fr;
             }
+            .map-container { 
+                height: 200px;
+            }
         }
         @media (max-width: 600px) {
-            .logo { font-size: 1.3rem; }
-            .section-title { font-size: 1.25rem; padding-bottom: 0.5rem;}
-            .hero-content { padding: 1.3rem; }
-            .about-image { font-size: 0.98rem; }
+            .nav-links {
+                gap: 1.5rem;
+            }
+            .nav-links a {
+                font-size: 1rem;
+            }
+            .logo { 
+                font-size: 1.8rem;
+            }
+            .section-title { 
+                font-size: 1.8rem;
+                padding-bottom: 0.5rem;
+            }
+            .hero-content { 
+                padding: 1.8rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .about-image { 
+                font-size: 0.98rem;
+                min-height: 200px;
+            }
         }
     </style>
 </head>
@@ -453,10 +486,10 @@
                     <h3>이 밤 그날의 반딧불을 당신의 창 가까이 보낼게요</h3>
                     <p>
                        난 파도가 머물던<br>
-		모래 위에 적힌 글씨처럼<br>
-		그대가 멀리<br>
-		사라져 버릴 것 같아<br>
-		늘 그리워 그리워<br>
+                       모래 위에 적힌 글씨처럼<br>
+                       그대가 멀리<br>
+                       사라져 버릴 것 같아<br>
+                       늘 그리워 그리워<br>
                     </p>
                 </div>
                 <div class="about-image">
@@ -481,8 +514,8 @@
                         <p>밤편지 대표 메뉴</p>
                     </div>
                 </div>
-                <div class="menu-item" data-title="모찌팥빙수" data-img="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu02_asmdev.jpg" data-price="17,000원" data-desc="여름한정 메뉴">
-                    <img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu02_asmdev.jpg" alt="모찌팥빙수" class="menu-image">
+                <div class="menu-item" data-title="망고빙수" data-img="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu02_asmdev.jpg" data-price="19,000원" data-desc="여름한정 메뉴">
+                    <img src="https://res.cloudinary.com/dp0l4rxhu/image/upload/menu02_asmdev.jpg" alt="망고빙수" class="menu-image">
                     <div class="menu-content">
                         <h3>망고빙수</h3>
                         <span class="price">19,000원</span>
@@ -537,64 +570,28 @@
     </div>
 
     <!-- 연락처 섹션 -->
-    <!-- 연락처 섹션 -->
-<section id="contact" class="contact">
-    <div class="container">
-        <h2 class="section-title" style="color: var(--accent);">연락처</h2>
-        <div class="contact-content">
-            <div>
-                <div class="contact-info">
-                    <h3>위치</h3>
-                    <p>전남 무안군 일로읍 공원길 84 1층</p>
-                    <h3 style="margin-top: 2rem;">연락처</h3>
-                    <p>전화: 061-285-0211</p>
-                    <p>이메일: info@beanscafe.com</p>
-                    <h3 style="margin-top: 2rem;">운영시간</h3>
-                    <p>평일: 오전 11시 - 오후 08시</p>
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--accent);">연락처</h2>
+            <div class="contact-content">
+                <div>
+                    <div class="contact-info">
+                        <h3>위치</h3>
+                        <p>전남 무안군 일로읍 공원길 84 1층</p>
+                        <h3 style="margin-top: 2rem;">연락처</h3>
+                        <p>전화: 061-285-0211</p>
+                        <p>이메일: info@nightletter.com</p>
+                        <h3 style="margin-top: 2rem;">운영시간</h3>
+                        <p>평일: 오전 11시 - 오후 08시</p>
+                        <p>주말: 오전 10시 - 오후 09시</p>
+                    </div>
+                    <!-- 지도 영역 (카카오맵 대신 플레이스홀더) -->
+                    <div class="map-container">
+                        <div>지도가 여기에 표시됩니다<br>전남 무안군 일로읍 공원길 84</div>
+                    </div>
                 </div>
-                <!-- 지도 영역 -->
-                <div style="margin-top:2rem; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(60,40,10,0.08); border:1.5px solid #ebdcc2;">
-                    <div id="daumRoughmapContainer1753766655670" style="width:100%; height:240px;"></div>
-                </div>
-            </div>
-            <div class="contact-form">
-                <h3 style="margin-bottom: 1.5rem;">문의하기</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="name">이름</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">이메일</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">문의내용</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">문의하기</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 카카오맵 스크립트: 반드시 body 끝에 -->
-<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-<script>
-    // 약도 렌더링
-    window.addEventListener("DOMContentLoaded", function() {
-        new daum.roughmap.Lander({
-            "timestamp" : "1753766655670",
-            "key" : "63m3aimicte",
-            "mapWidth" : "100%",
-            "mapHeight" : "240"
-        }).render();
-    });
-</script>
-
                 <div class="contact-form">
-                    <h3 style="margin-bottom: 1.5rem;">문의하기</h3>
+                    <h3 style="margin-bottom: 1.5rem; color: var(--accent);">문의하기</h3>
                     <form>
                         <div class="form-group">
                             <label for="name">이름</label>
@@ -621,6 +618,7 @@
             <p>&copy; 2025 무안 밤편지. All rights reserved.</p>
         </div>
     </footer>
+
     <script>
         // 부드러운 스크롤
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -644,7 +642,7 @@
                 header.style.boxShadow = '0 2px 20px rgba(100,80,60,0.09)';
             } else {
                 header.style.background = 'rgba(250,245,236,0.93)';
-                header.style.boxShadow = 'none';
+                header.style.boxShadow = '0 2px 18px rgba(100,80,60,0.07)';
             }
         });
 
@@ -668,54 +666,7 @@
                 }
             });
         }, observerOptions);
+        
         document.querySelectorAll('.menu-item').forEach((item, index) => {
             item.style.opacity = '0';
-            item.style.transform = 'translateY(50px)';
-            item.style.transition = `all 0.7s cubic-bezier(.5,0,.13,1) ${index * 0.09}s`;
-            observer.observe(item);
-        });
-
-        // 메뉴 사진 오버레이(확대)
-        const overlay = document.getElementById('menuOverlay');
-        const overlayImg = document.getElementById('overlayImg');
-        const overlayTitle = document.getElementById('overlayTitle');
-        const overlayPrice = document.getElementById('overlayPrice');
-        const overlayDesc = document.getElementById('overlayDesc');
-        const closeOverlayBtn = document.getElementById('closeOverlayBtn');
-
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                overlayImg.src = item.dataset.img;
-                overlayTitle.textContent = item.dataset.title;
-                overlayPrice.textContent = item.dataset.price;
-                overlayDesc.textContent = item.dataset.desc;
-                overlay.classList.add('active');
-            });
-            item.addEventListener('mouseleave', function() {
-                overlay.classList.remove('active');
-            });
-        });
-        // 모바일에서는 터치 클릭으로(터치 지원)
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('touchstart', function(e) {
-                overlayImg.src = item.dataset.img;
-                overlayTitle.textContent = item.dataset.title;
-                overlayPrice.textContent = item.dataset.price;
-                overlayDesc.textContent = item.dataset.desc;
-                overlay.classList.add('active');
-                e.stopPropagation();
-            });
-        });
-        // 오버레이 닫기 버튼
-        closeOverlayBtn.addEventListener('click', function() {
-            overlay.classList.remove('active');
-        });
-        // 오버레이 영역 바깥 클릭 시 닫기
-        overlay.addEventListener('click', function(e) {
-            if (e.target === overlay) {
-                overlay.classList.remove('active');
-            }
-        });
-    </script>
-</body>
-</html>
+            item.style.transform = '
